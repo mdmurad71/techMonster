@@ -19,7 +19,7 @@ class UserController extends Controller
 
         if ($validator->fails()) {
             return response()->json([
-                'validation_errors' => $validator->messages(),
+                'validation_errors' => "something went wrong",
             ]);
         } else {
             $users = User::create([
@@ -44,7 +44,7 @@ function Login(Request $request){
 
     if ($validator->fails()) {
         return response()->json([
-            'validator_errors' => $validator->message(),
+            'validator_errors' => "something went wrong",
         ]);
     } else {
         $user = User::where('email', $request->email)->first();
