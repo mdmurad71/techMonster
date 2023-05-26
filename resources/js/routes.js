@@ -5,6 +5,7 @@ import home from './component/Home'
 import Login from './component/Login'
 import postThread from './component/PostThread'
 import register from './component/register'
+import ThreadDetails from './component/ThreadDetails'
 
 
 export const routes= [
@@ -30,8 +31,15 @@ export const routes= [
     {
         path: '/register',
         component: register,
-        
+        name: 'register'
     },
+
+    {
+      path: '/threadDetails/:id',
+      component: ThreadDetails,
+      name: 'ThreadDetails'
+  },
+
 
   
 ];

@@ -8,7 +8,7 @@
                     <div class="card-body">
                         <h5 class="card-title">{{list.title}}</h5>
                         <p class="card-text">{{list.desc}}</p>
-                        <a href="#" class="btn btn-primary">Comments</a>
+                        <router-link :to="{name: 'ThreadDetails', params:{id: list.id}}" class="btn btn-primary btn-block">Comments</router-link>
                     </div>
                     
 

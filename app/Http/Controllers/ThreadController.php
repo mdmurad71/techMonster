@@ -47,4 +47,14 @@ class ThreadController extends Controller
             'message'=> 'success'
         ]);
     }
+
+    function threadDetails($id){
+        $detail= Thread::where('id', $id)->get();
+        return response()->json([
+            'status'=> 200,
+            'message'=> 'success',
+            'details'=> $detail
+
+        ]);
+    }
 }

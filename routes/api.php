@@ -13,6 +13,7 @@ Route::post('/login', [UserController::class, 'Login']);
 
 Route::post('/add', [ThreadController::class, 'addThread']);
 Route::get('/threadList', [ThreadController::class, 'threadList']);
+Route::get('/detail/{id}', [ThreadController::class, 'threadDetails']);
 
 
 
