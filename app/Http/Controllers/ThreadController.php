@@ -13,8 +13,8 @@ class ThreadController extends Controller
     function addThread(Request $request){
         $validator= Validator::make($request->all(),[
             'title'=> 'required',
-            // 'desc'=> 'required',
-            // 'user_id'=> 'required',
+            'desc'=> 'required',
+            'user_id'=> 'required',
 
         ]);
 

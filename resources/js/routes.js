@@ -3,7 +3,7 @@ import * as VueRouter from "vue-router";
 
 import home from './component/Home'
 import Login from './component/Login'
-// import Reserve from './component/Reserve'
+import postThread from './component/PostThread'
 // import ReserveList from './component/ReserveList'
 
 
@@ -20,12 +20,12 @@ export const routes= [
         name: 'login'
     },
 
-    // {
-    //     path: '/reserve/:id',
-    //     component: Reserve,
-    //     name: 'reserve',
+    {
+        path: '/addThread',
+        component: postThread,
+        name: 'postThread',
         
-    // },
+    },
 
     // {
     //     path: '/list',

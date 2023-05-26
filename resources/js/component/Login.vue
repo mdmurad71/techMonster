@@ -7,12 +7,12 @@
 
             <div class="form-group mb-4">
             <div class="form-label-group">
-              <input type="name" id="inputName" class="form-control" placeholder="Name" v-model="form.email" required="required">
+              <input type="name" id="inputName" class="form-control" placeholder="email" v-model="form.email" required="required">
             </div>
           </div>
           <div class="form-group mb-4">
             <div class="form-label-group">
-              <input type="phone" id="inputPhone" class="form-control" placeholder="Phone" v-model="form.password" required="required">
+              <input type="phone" id="inputPhone" class="form-control" placeholder="password" v-model="form.password" required="required">
             </div>
           </div>
 
