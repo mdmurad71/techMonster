@@ -4,7 +4,7 @@ import * as VueRouter from "vue-router";
 import home from './component/Home'
 import Login from './component/Login'
 import postThread from './component/PostThread'
-// import ReserveList from './component/ReserveList'
+import register from './component/register'
 
 
 export const routes= [
@@ -27,11 +27,11 @@ export const routes= [
         
     },
 
-    // {
-    //     path: '/list',
-    //     component: ReserveList,
+    {
+        path: '/register',
+        component: register,
         
-    // },
+    },
 
   
 ];

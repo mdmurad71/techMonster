@@ -33,28 +33,40 @@
 <script>
 export default {
 
-    data() {
-            var retrievedData = localStorage.getItem('myData');
-        var parsedData = JSON.parse(retrievedData);
-        return {
+        mounted() {
+        if(localStorage.getItem('myData')===null){
+        this.$router.push('/login')
+        }
+    },
 
+    data() {
+
+        return {
             form:{
                 title:"",
                 desc:"",
-                user_id: localStorage.getItem('this.parsedData.user_id')
+                user_id: localStorage.getItem('myData')
             }
         }
     },
 
+  
+
     methods: {
         addThread(){
             axios.post('/api/add', this.form).then(res=>{
+            console.log(this.values);
                 if(res.status===200){
                     this.$router.push({name:'home'})
                 }
             })
-        }
+        },
+
+       
+  
     },
+
+
     
 }
 </script>

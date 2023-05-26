@@ -38,4 +38,13 @@ class ThreadController extends Controller
             ]);
         }
     }
+
+    function threadList(Request $request){
+        $data= Thread::orderBy('id', 'desc')->get();
+        return response()->json([
+            'status'=>200,
+            'thread_list'=> $data,
+            'message'=> 'success'
+        ]);
+    }
 }

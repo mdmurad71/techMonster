@@ -1,7 +1,7 @@
 <template lang="">
 <div class="container">
     <div class="card card-login mx-auto mt-5" style="width:500px">
-      <div class="card-header">Please give Information and Go to Next</div>
+      <div class="card-header">Login Please</div>
       <div class="card-body">
         <form @submit.prevent="login">
 
@@ -29,7 +29,7 @@
         </div>
         </form>
         <div class="text-center">
-          <router-link class="d-block small mt-3" to="/">Back to Home</router-link>
+          <router-link class="d-block small mt-3" to="/register">Don't have a account? please register</router-link>
         </div>
       </div>
     </div>
@@ -57,7 +57,7 @@ export default {
                 user_id: res.data.user_id
                 }
                 var jsonData = JSON.stringify(data);
-                    localStorage.setItem('myData', jsonData);
+                    localStorage.setItem('myData', res.data.user_id);
                     this.$router.push({name:'home'})
                 }
             })
