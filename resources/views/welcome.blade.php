@@ -32,14 +32,17 @@
             <div class="collapse justify-content-end mr-5 text-white navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                  <a class="nav-link" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Login</a>
+                    <a class="nav-link" href="#">Add Threads</a>
+                  </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/#login">Login</a>
                 </li>
 
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Log Out</a>
+                  <a class="nav-link" href="#">Logout</a>
                 </li>
               </ul>
 

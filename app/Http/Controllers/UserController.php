@@ -60,6 +60,7 @@ function Login(Request $request){
 
             return response()->json([
                 'status' => 200,
+                'user_id' => $user->id,
                 'userName' => $user->name,
                 'message' => 'Loged in successfully',
             ]);

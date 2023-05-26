@@ -19763,8 +19763,14 @@ __webpack_require__.r(__webpack_exports__);
     login: function login() {
       var _this = this;
       axios.post('/api/login', this.form).then(function (res) {
+        console.log(res.data.user_id);
         if (res.status === 200) {
-          localStorage.setItem('email', _this.form.email);
+          var data = {
+            email: "this.form.email",
+            user_id: res.data.user_id
+          };
+          var jsonData = JSON.stringify(data);
+          localStorage.setItem('myData', jsonData);
           _this.$router.push({
             name: 'home'
           });
