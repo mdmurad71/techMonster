@@ -5,18 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Thread extends Model
+class Comment extends Model
 {
     use HasFactory;
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
     protected $fillable= [
-        'title',
-        'desc',
+        'comments',
+        'threads_id',
         'user_id',
     ];
 }

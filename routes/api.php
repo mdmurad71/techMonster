@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ThreadController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -14,6 +15,7 @@ Route::post('/login', [UserController::class, 'Login']);
 Route::post('/add', [ThreadController::class, 'addThread']);
 Route::get('/threadList', [ThreadController::class, 'threadList']);
 Route::get('/detail/{id}', [ThreadController::class, 'threadDetails']);
+Route::post('/addComment', [CommentController::class, 'addComment']);
 
 
 

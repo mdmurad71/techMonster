@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Thread;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class ThreadController extends Controller
@@ -49,11 +50,17 @@ class ThreadController extends Controller
     }
 
     function threadDetails($id){
-        $detail= Thread::where('id', $id)->get();
+        $detail= Thread::with('user')->where('id', $id)->get();
+        // $userName = DB::table('users')
+        // ->join('threads', 'users.id', '=', 'threads.user_id')
+        // ->select('users.*')
+        // ->groupBy('threads.user_id')
+        // ->get();
         return response()->json([
             'status'=> 200,
             'message'=> 'success',
-            'details'=> $detail
+            'details'=> $detail,
+            // 'userName'=>$userName
 
         ]);
     }
