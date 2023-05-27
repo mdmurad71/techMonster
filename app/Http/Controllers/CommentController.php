@@ -37,4 +37,15 @@ class CommentController extends Controller
             ]);
         }
     }
+
+    function commentList($id){
+      $commentData= Comment::with('user', 'threads')->orderBy('id', 'desc')->get();
+      return response()->json([
+        'status'=>200,
+        'message'=> 'success',
+        'comment_list'=> $commentData
+        
+    ]);
+
+    }
 }

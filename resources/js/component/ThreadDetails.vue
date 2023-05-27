@@ -1,11 +1,10 @@
 <template>
     <div class="container">
         <h2>Data Details</h2>
-        <template v-for="detail in details" :key="detail">
             <div class="card justify-content-center" style="width: 55rem">
                 <div class="card-body">
-
-					<div class="comment-box">
+         <template v-for="detail in details" :key="detail">
+				<div  class="comment-box">
 						<div class="comment-head">
 							<h6 class="comment-name by-author"><a href="http://creaticode.com/blog">Posted By:: {{detail.user.name}}</a></h6>
 
@@ -14,15 +13,25 @@
                     <h5 class="card-title">{{detail.title}}</h5>
                     <p class="card-text">{{detail.desc}}</p>
                     </div>
-					</div>
-
+                    </div>
+                </template>
+			</div>
+                </div>
+                </div>
+            
                     <hr>
                     <hr>
-                  
 
-<div class="comments-container">
-		<h1>Comentarios</h1>
 
+
+
+
+
+
+<!-- Contenedor Principal -->
+	<div class="comments-container">
+		<h1>Comentarios </h1>
+<templete v-for="data in datas" :key="data">
 		<ul id="comments-list" class="comments-list">
 			<li>
 				<div class="comment-main-level">
@@ -31,46 +40,31 @@
 					<!-- Contenedor del Comentario -->
 					<div class="comment-box">
 						<div class="comment-head">
-							<h6 class="comment-name by-author"><a href="http://creaticode.com/blog">Agustin Ortiz</a></h6>
+							<h6 class="comment-name by-author">{{data.user.name}}</h6>
 
 						</div>
 						<div class="comment-content">
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo?
+							{{data.comment}}
 						</div>
 					</div>
 				</div>
-				<!-- Respuestas de los comentarios -->
-            </li>
-
-			
-		</ul>
+			</li>	<!-- Respuestas de los comentarios -->
+            </ul>
+		</templete>		
 	</div>
 
-                    <form>
-                        <div class="form-group mb-4">
-                          <h4>Add Comments</h4>
-                            <div class="form-label-group">
-                                <textarea rows="4" type="desc" id="inputPhone" class="form-control" placeholder="Description"
-                                     required="required"></textarea>
-                            </div>
-                        </div>
-                        <div class="form-group mt-3">
-                            <button type="submit" class="btn btn-primary btn-block" style="width: 100%;">Save</button>
-                        </div>
-                    </form>
 
-                </div>
 
-            </div>
-        </template>
 
-    </div>
+
+
 </template>
 
 <script>
     import {
         onMounted,
         ref,
+        
         reactive
     } from 'vue';
     import {
@@ -80,20 +74,55 @@
     export default {
         setup() {
             const details = ref([]);
+            const datas = ref([]);
+
             const route = useRoute();
+                const form= reactive({
+                comments: '',
+                user_id: localStorage.getItem('myData'),
+                threads_id: route.params.id
+                
+    });
+
+const addComment=()=>{
+        axios.post('/api/addComment', form).then(res=>{
+        }).catch()
+        }
+
+
             const threadDetails = async () => {
                 let id = route.params.id;
-                let res = await axios.get('/api/detail/' + id);
-                details.value = res.data.details;
+                let res1 = await axios.get('/api/detail/' + id);
+                let res2 = await axios.get('/api/commentList/' + id);
+                console.log(res1.data.details);
+                console.log(res2.data.comment_list);
+                details.value = res1.data.details;
+                datas.value = res2.data.comment_list;
                 console.log(details.value);
             }
-            onMounted(threadDetails());
+
+
+                onMounted(() => {
+      threadDetails();
+    });
             return {
                 details,
+                form, 
+                addComment
             }
         }
     };
 </script>
+
+
+
+
+
+
+
+
+
+
 
 <style>
 

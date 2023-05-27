@@ -16,6 +16,7 @@ Route::post('/add', [ThreadController::class, 'addThread']);
 Route::get('/threadList', [ThreadController::class, 'threadList']);
 Route::get('/detail/{id}', [ThreadController::class, 'threadDetails']);
 Route::post('/addComment', [CommentController::class, 'addComment']);
+Route::get('/commentList/{id}', [CommentController::class, 'commentList']);
 
 
 

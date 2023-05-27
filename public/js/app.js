@@ -19868,10 +19868,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   setup: function setup() {
     var details = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
+    var datas = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)([]);
     var route = (0,vue_router__WEBPACK_IMPORTED_MODULE_2__.useRoute)();
+    var form = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)({
+      comments: '',
+      user_id: localStorage.getItem('myData'),
+      threads_id: route.params.id
+    });
+    var addComment = function addComment() {
+      axios__WEBPACK_IMPORTED_MODULE_1___default().post('/api/addComment', form).then(function (res) {})["catch"]();
+    };
     var threadDetails = /*#__PURE__*/function () {
       var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee() {
-        var id, res;
+        var id, res1, res2;
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1) switch (_context.prev = _context.next) {
             case 0:
@@ -19879,10 +19888,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               _context.next = 3;
               return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/detail/' + id);
             case 3:
-              res = _context.sent;
-              details.value = res.data.details;
-              console.log(details.value);
+              res1 = _context.sent;
+              _context.next = 6;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/commentList/' + id);
             case 6:
+              res2 = _context.sent;
+              console.log(res1.data.details);
+              console.log(res2.data.comment_list);
+              details.value = res1.data.details;
+              datas.value = res2.data.comment_list;
+              console.log(details.value);
+            case 12:
             case "end":
               return _context.stop();
           }
@@ -19892,9 +19908,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         return _ref.apply(this, arguments);
       };
     }();
-    (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(threadDetails());
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)(function () {
+      threadDetails();
+    });
     return {
-      details: details
+      details: details,
+      form: form,
+      addComment: addComment
     };
   }
 });
@@ -20186,10 +20206,13 @@ var _hoisted_1 = {
 };
 var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, "Data Details", -1 /* HOISTED */);
 var _hoisted_3 = {
-  "class": "card-body"
+  "class": "card justify-content-center",
+  style: {
+    "width": "55rem"
+  }
 };
 var _hoisted_4 = {
-  "class": "comment-box"
+  "class": "card-body"
 };
 var _hoisted_5 = {
   "class": "comment-head"
@@ -20209,17 +20232,54 @@ var _hoisted_9 = {
 var _hoisted_10 = {
   "class": "card-text"
 };
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<hr><hr><div class=\"comments-container\"><h1>Comentarios</h1><ul id=\"comments-list\" class=\"comments-list\"><li><div class=\"comment-main-level\"><!-- Avatar --><div class=\"comment-avatar\"><img src=\"http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg\" alt=\"\"></div><!-- Contenedor del Comentario --><div class=\"comment-box\"><div class=\"comment-head\"><h6 class=\"comment-name by-author\"><a href=\"http://creaticode.com/blog\">Agustin Ortiz</a></h6></div><div class=\"comment-content\"> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit omnis animi et iure laudantium vitae, praesentium optio, sapiente distinctio illo? </div></div></div><!-- Respuestas de los comentarios --></li></ul></div><form><div class=\"form-group mb-4\"><h4>Add Comments</h4><div class=\"form-label-group\"><textarea rows=\"4\" type=\"desc\" id=\"inputPhone\" class=\"form-control\" placeholder=\"Description\" required=\"required\"></textarea></div></div><div class=\"form-group mt-3\"><button type=\"submit\" class=\"btn btn-primary btn-block\" style=\"width:100%;\">Save</button></div></form>", 4);
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", null, null, -1 /* HOISTED */);
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("hr", null, null, -1 /* HOISTED */);
+var _hoisted_13 = {
+  "class": "comments-container"
+};
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", null, "Comentarios ", -1 /* HOISTED */);
+var _hoisted_15 = {
+  id: "comments-list",
+  "class": "comments-list"
+};
+var _hoisted_16 = {
+  "class": "comment-main-level"
+};
+var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "comment-avatar"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+  src: "http://i9.photobucket.com/albums/a88/creaticode/avatar_1_zps8e1c80cd.jpg",
+  alt: ""
+})], -1 /* HOISTED */);
+var _hoisted_18 = {
+  "class": "comment-box"
+};
+var _hoisted_19 = {
+  "class": "comment-head"
+};
+var _hoisted_20 = {
+  "class": "comment-name by-author"
+};
+var _hoisted_21 = {
+  "class": "comment-content"
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [_hoisted_2, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.details, function (detail) {
+  var _component_templete = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("templete");
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($setup.details, function (detail) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       key: detail,
-      "class": "card justify-content-center",
-      style: {
-        "width": "55rem"
-      }
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h6", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_7, "Posted By:: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(detail.user.name), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(detail.title), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(detail.desc), 1 /* TEXT */)])]), _hoisted_11])]);
-  }), 128 /* KEYED_FRAGMENT */))]);
+      "class": "comment-box"
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h6", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_7, "Posted By:: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(detail.user.name), 1 /* TEXT */)])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(detail.title), 1 /* TEXT */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", _hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(detail.desc), 1 /* TEXT */)])]);
+  }), 128 /* KEYED_FRAGMENT */))])])]), _hoisted_11, _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Contenedor Principal "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [_hoisted_14, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.datas, function (data) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_templete, {
+      key: data
+    }, {
+      "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+        return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Avatar "), _hoisted_17, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Contenedor del Comentario "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_18, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_19, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h6", _hoisted_20, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.user.name), 1 /* TEXT */)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(data.comment), 1 /* TEXT */)])])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Respuestas de los comentarios ")])];
+      }),
+      _: 2 /* DYNAMIC */
+    }, 1024 /* DYNAMIC_SLOTS */);
+  }), 128 /* KEYED_FRAGMENT */))])], 64 /* STABLE_FRAGMENT */);
 }
 
 /***/ }),
