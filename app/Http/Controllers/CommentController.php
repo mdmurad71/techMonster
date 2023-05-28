@@ -39,7 +39,7 @@ class CommentController extends Controller
     }
 
     function commentList($id){
-      $commentData= Comment::with('user', 'threads')->orderBy('id', 'desc')->get();
+      $commentData= Comment::with('user', 'threads')->where('threads_id', $id)->orderBy('id', 'desc')->get();
       return response()->json([
         'status'=>200,
         'message'=> 'success',
@@ -48,4 +48,36 @@ class CommentController extends Controller
     ]);
 
     }
+
+
+    public function update(Request $request, $id)
+{
+    $comment = Comment::findOrFail($id);
+    $comment->comments = $request->input('comments');
+    // Set other updated fields as needed
+    $comment->save();
+    return response()->json([
+        'status'=>200,
+        'message'=> 'update success',
+        'comment_update'=> $comment
+        
+    ]);
+}
+
+
+public function delete($id)
+{
+    $DeleteComment = Comment::where('id', $id)->delete();
+
+    return response()->json([
+        'status'=>200,
+        'message'=> 'delete success',
+        'comment_delete'=> $DeleteComment
+        
+    ]);
+}
+
+
+
+
 }

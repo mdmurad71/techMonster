@@ -44,17 +44,37 @@
 
 						</div>
 						<div class="comment-content">
-							{{data.comment}}
+							{{data.comments}}
 						</div>
+						
+						
+								    <button  class="btn btn-success m-2" >update</button>
+            <button  class="btn btn-danger btn-block">Delete</button>
 					</div>
 				</div>
+
+
 			</li>	<!-- Respuestas de los comentarios -->
             </ul>
-		</templete>		
+
+		</templete>	
+		
+
 	</div>
-
-
-
+<div class="comments-container" style="width: 55rem">
+ <form @submit.prevent="addComment">
+                        <div class="form-group mb-4">
+                          <h4>Add Comments</h4>
+                            <div class="form-label-group">
+                                <textarea rows="4" type="desc" id="inputPhone" class="form-control" placeholder="Description"
+                                   v-model="form.comments"  required="required"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <button type="submit" class="btn btn-primary btn-block" style="width: 100%;">Save</button>
+                        </div>
+                    </form>
+</div>
 
 
 
@@ -71,7 +91,20 @@
         useRoute
     } from 'vue-router';
     import axios from 'axios';
-    export default {
+    export default {   
+
+      mounted() {
+        if(localStorage.getItem('myData')===null){
+        this.$router.push('/login')
+        }
+
+		//this.showButton= datas.user.id !== localStorage.getItem('myData');
+
+		
+		
+    },
+
+
         setup() {
             const details = ref([]);
             const datas = ref([]);
@@ -86,8 +119,10 @@
 
 const addComment=()=>{
         axios.post('/api/addComment', form).then(res=>{
+		threadDetails();
         }).catch()
         }
+
 
 
             const threadDetails = async () => {
@@ -102,12 +137,16 @@ const addComment=()=>{
             }
 
 
+
+
                 onMounted(() => {
       threadDetails();
+	  
     });
             return {
                 details,
                 form, 
+				datas,
                 addComment
             }
         }
